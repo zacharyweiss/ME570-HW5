@@ -8,3 +8,6 @@
 %corresponding to the vertex should be added to  @x   idxVisibleVertices (using
 %the information from  @x   world().indexes). itemize
 function [idxVisibleVertices]=visibility_isVisible(world,x)
+    
+
+end
