@@ -23,9 +23,14 @@ function [xPath]=visibility_search(graphVector,xStart,xGoal,world)
         idx = nVerticesTotal+iX;
         nNeighbors = numel(graphVector(idx).neighbors);
         for iNeighbor = 1:nNeighbors
+            % calculate neighborsCost for start/goal positions
             neighborIdx = graphVector(idx).neighbors(iNeighbor);
             neighborX = allVerts(:,allIdx==neighborIdx);
             graphVector(idx).neighborsCost(iNeighbor) = norm([graphVector(idx).x neighborX]);
+            
+            % add symmetrical entries to neighbors
+            graphVector(neighborIdx).neighbors = [graphVector(neighborIdx).neighbors; idx];
+            graphVector(neighborIdx).neighborsCost = [graphVector(neighborIdx).neighborsCost; graphVector(idx).neighborsCost(iNeighbor)];
         end
     end
     
