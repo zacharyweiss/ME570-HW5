@@ -9,5 +9,7 @@
 %the information from  @x   world().indexes). itemize
 function [idxVisibleVertices]=visibility_isVisible(world,x)
     
-
+    for iPoly = 1:numel(world)
+        
+    end
 end
