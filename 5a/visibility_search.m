@@ -12,10 +12,12 @@ function [xPath]=visibility_search(graphVector,xStart,xGoal,world)
     allVerts = [world.vertices];
     allIdx = [world.indexes];
     
-    graphVector(nVerticesTotal+1).x = xStart;
-    graphVector(nVerticesTotal+1).neighbors = visibility_isVisible(world,xStart);
-    graphVector(nVerticesTotal+2).x = xGoal;
-    graphVector(nVerticesTotal+2).neighbors = visibility_isVisible(world,xGoal);
+    idxStart = nVerticesTotal+1;
+    idxGoal = nVerticesTotal+2;
+    graphVector(idxStart).x = xStart;
+    graphVector(idxStart).neighbors = visibility_isVisible(world,xStart);
+    graphVector(idxGoal).x = xGoal;
+    graphVector(idxGoal).neighbors = visibility_isVisible(world,xGoal);
     
     for iX = 1:numel(graphVector)-nVerticesTotal
         idx = nVerticesTotal+iX;
@@ -27,5 +29,5 @@ function [xPath]=visibility_search(graphVector,xStart,xGoal,world)
         end
     end
     
-    
+    [xPath,~] = graph_search(graphVector,idxStart,idxGoal);
 end
