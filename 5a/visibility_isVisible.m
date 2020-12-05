@@ -8,13 +8,28 @@
 %corresponding to the vertex should be added to  @x   idxVisibleVertices (using
 %the information from  @x   world().indexes). itemize
 function [idxVisibleVertices]=visibility_isVisible(world,x)
+    idxVisibleVertices = [];
     
-%     for iPoly = 1:numel(world)
-%         for iVert = 1:numel(world(iPoly).indexes)
-%             vis = true;
-%             visible = polygon_isSelfOccluded(world(iPoly).vertices(iVert),world(iPoly).vertices(iVert)x
-%             if vis
-%                 vis = polygon_isCollisionEdge(
-%             end
-%     end
+    for iPoly = 1:numel(world)
+        nVert = numel(world(iPoly).indexes);
+        
+        %edge cases
+        selfOccl = zeros(1,nVert);
+        isColl = selfOccl;
+        selfOccl(nVert) = polygon_isSelfOccluded(world(iPoly).vertices(:,nVert),world(iPoly).vertices(:,nVert-1),world(iPoly).vertices(:,1),x);
+        selfOccl(1) = polygon_isSelfOccluded(world(iPoly).vertices(:,1),world(iPoly).vertices(:,nVert),world(iPoly).vertices(:,2),x);
+        
+        %remaining self-occlude verts
+        for iVert = 2:nVert-1
+            selfOccl(iVert) = polygon_isSelfOccluded(world(iPoly).vertices(:,iVert),world(iPoly).vertices(:,iVert-1),world(iPoly).vertices(:,iVert+1),x);
+        end
+        
+        for iVert = 1:nVert
+            for iPolyCollision = 1:numel(world)
+                isColl(iVert) = any([isColl(iVert) polygon_isCollisionEdge([x world(iPoly).vertices(:,iVert)],world(iPolyCollision).vertices)]);
+            end
+        end
+        
+        idxVisibleVertices = [idxVisibleVertices world(iPoly).indexes(~or(selfOccl,isColl))];
+    end
 end
