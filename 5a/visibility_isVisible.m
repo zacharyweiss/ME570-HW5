@@ -9,12 +9,12 @@
 %the information from  @x   world().indexes). itemize
 function [idxVisibleVertices]=visibility_isVisible(world,x)
     
-    for iPoly = 1:numel(world)
-        for iVert = 1:numel(world(iPoly).indexes)
-            vis = true;
-            visible = polygon_isSelfOccluded(world(iPoly).vertices(iVert),world(iPoly).vertices(iVert)x
-            if vis
-                vis = polygon_isCollisionEdge(
-            end
-    end
+%     for iPoly = 1:numel(world)
+%         for iVert = 1:numel(world(iPoly).indexes)
+%             vis = true;
+%             visible = polygon_isSelfOccluded(world(iPoly).vertices(iVert),world(iPoly).vertices(iVert)x
+%             if vis
+%                 vis = polygon_isCollisionEdge(
+%             end
+%     end
 end
