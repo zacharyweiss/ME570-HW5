@@ -30,6 +30,7 @@ function [idxVisibleVertices]=visibility_isVisible(world,x)
             end
         end
         
-        idxVisibleVertices = [idxVisibleVertices world(iPoly).indexes(~or(selfOccl,isColl))];
+        idxVisibleVertices = [idxVisibleVertices; world(iPoly).indexes(not(selfOccl | isColl))'];
     end
+    
 end
