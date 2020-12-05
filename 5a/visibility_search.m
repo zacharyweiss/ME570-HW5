@@ -19,8 +19,8 @@ function [xPath]=visibility_search(graphVector,xStart,xGoal,world)
     graphVector(idxGoal).x = xGoal;
     graphVector(idxGoal).neighbors = visibility_isVisible(world,xGoal);
     
-    for iX = 1:numel(graphVector)-nVerticesTotal
-        idx = nVerticesTotal+iX;
+    for iAddlPts = 1:numel(graphVector)-nVerticesTotal
+        idx = nVerticesTotal+iAddlPts;
         nNeighbors = numel(graphVector(idx).neighbors);
         for iNeighbor = 1:nNeighbors
             % calculate neighborsCost for start/goal positions
