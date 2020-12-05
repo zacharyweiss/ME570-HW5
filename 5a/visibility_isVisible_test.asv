@@ -11,17 +11,17 @@ for iStart = 1:nStart
     x = xStart(:,iStart);
     polygonworld_draw(world,x)
     idxVisibleVertices = visibility_isVisible(world,x);
-    nbVisible = numel(idxVisibleVertices);
+    nbVisible = size(idxVisibleVertices,2);
     nbPoly = size(world,2);
     verticesList = [];
     for iPoly = 1:nbPoly
         verticesList = [verticesList, world(:,iPoly).vertices];
     end
     %plot lines to each visible point
-    for iVisible = 1:nbVisible
-        hold on
-        points = [x verticesList(:,idxVisibleVertices(iVisible))];
-        plot(points(1,:),points(2,:),'Color','g')
+    for iVisible = 1:nbVisible 
+        %points = [x verticesList(:,idxVisibleVertices(:,iVisible))];
+        %plot(points(1,:),points(2,:),'Color','g')
+        plot(x,points(2,:),'Color','g')
     end
     
 end
