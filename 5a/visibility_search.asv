@@ -26,6 +26,4 @@ function [xPath]=visibility_search(graphVector,xStart,xGoal,world)
             graphVector(idx).neighborsCost(iNeighbor) = norm([graphVector(idx).x neighborX]);
         end
     end
-    
-    
 end
