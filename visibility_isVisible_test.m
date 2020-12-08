@@ -3,6 +3,7 @@ function visibility_isVisible_test()
 load('polygonWorld','world','xStart');
 %initialize plot variables
 nStart = size(xStart,2);
+xStart(:,nStart) = world(3).vertices(:,1);
 for iStart = 1:nStart
     %new figure for each starting point
     figure(iStart)

@@ -10,12 +10,10 @@ function visibility_search_test()
     
     graphVector = visibility_graph(world);
     for iStart = 1:size(xStart,2)
-        xPath = visibility_search(graphVector,xStart(:,iStart),xGoal,world);
-        
         figure(iStart)
-        hold on
-        axis equal
-        polygonworld_draw(world,xGoal)
-        plot(xPath(1,:),xPath(2,:),'Color','g')
+        hold
+        visibility_search(graphVector,xStart,xGoal,world)
     end
+    
+    polygonworld_draw(world,xGoal)
 end
