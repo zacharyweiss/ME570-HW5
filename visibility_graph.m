@@ -19,7 +19,7 @@ function [graphVector]=visibility_graph(world)
             for iNeighbor = 1:nNeighbors
                 neighborIdx = graphVector(idx).neighbors(iNeighbor);
                 neighborX = allVerts(:,allIdx==neighborIdx);
-                graphVector(idx).neighborsCost(iNeighbor) = norm([graphVector(idx).x neighborX]);
+                graphVector(idx).neighborsCost(iNeighbor) = norm(graphVector(idx).x-neighborX);
             end
         end
     end
