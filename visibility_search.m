@@ -34,5 +34,5 @@ function [xPath]=visibility_search(graphVector,xStart,xGoal,world)
         end
     end
     
-    [xPath,~] = graph_search(graphVector,idxStart,idxGoal);
+    [xPath,graphVector] = graph_search(graphVector,idxStart,idxGoal);
 end
