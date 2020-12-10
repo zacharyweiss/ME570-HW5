@@ -12,12 +12,13 @@ function [flagIsCollision]=polygon_isCollisionEdge(edge,vertices)
    
    % checks if edge is inside filled polygons, outside unfilled polygons
    % (world edge), considers a collision if so
+   [inPoly onPoly]
    if polygon_isFilled(vertices)
        if all(inpolygon(edge(1,:),edge(2,:),vertices(1,:),vertices(2,:)))
            flagIsCollision = true;
        end
    else
-       if all(inpolygon(edge(1,:),edge(2,:),vertices(1,:),vertices(2,:)))
+       if all(~inpolygon(edge(1,:),edge(2,:),vertices(1,:),vertices(2,:)))
            flagIsCollision = true;
        end
    end
