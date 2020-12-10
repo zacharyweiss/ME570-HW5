@@ -7,7 +7,7 @@
 %@x   neighbors and  @x   neighborsCost fields that are already in the  @x  
 %graphVector array to keep the graph symmetric.  graph_search to find and return
 %a path from  @x   xStart to  @x   xGoal. enumerate
-function [xPath]=visibility_search(graphVector,xStart,xGoal,world)
+function [xPath,graphVector]=visibility_search(graphVector,xStart,xGoal,world)
     nVerticesTotal = numel(graphVector);
     allVerts = [world.vertices];
     allIdx = [world.indexes];
