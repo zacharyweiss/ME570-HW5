@@ -10,16 +10,16 @@ function [flagIsCollision]=polygon_isCollisionEdge(edge,vertices)
         flagIsCollision = any([edge_isCollision(edge,vertices(:,iEdge:iEdge+1)) flagIsCollision]);
    end
    
-   flagIsCollision = any([polygon_isCollision(edge,vertices) flagIsCollision]);
+   %flagIsCollision = any([polygon_isCollision(edge,vertices) flagIsCollision]);
 
-%    [inPoly, onPoly] = inpolygon(edge(1,:),edge(2,:),vertices(1,:),vertices(2,:));
-%    if polygon_isFilled(vertices)
-%        if all(inPoly) && ~all(onPoly)
-%            flagIsCollision = true;
-%        end
-%    else
-%        if all(~inPoly) && ~all(onPoly)
-%            flagIsCollision = true;
-%        end
-%    end
+   [inPoly, onPoly] = inpolygon(edge(1,:),edge(2,:),vertices(1,:),vertices(2,:));
+   if polygon_isFilled(vertices)
+       if all(inPoly) && ~all(onPoly)
+           flagIsCollision = true;
+       end
+   else
+       if all(~inPoly) && ~all(onPoly)
+           flagIsCollision = true;
+       end
+   end
 end
