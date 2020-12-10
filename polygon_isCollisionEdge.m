@@ -9,4 +9,8 @@ function [flagIsCollision]=polygon_isCollisionEdge(edge,vertices)
    for iEdge = 1:nPairs-1
         flagIsCollision = any([edge_isCollision(edge,vertices(:,iEdge:iEdge+1)) flagIsCollision]);
    end
+   
+   if all(inpolygon(edge(1,:),edge(2,:),vertices(1,:),vertices(2,:)))
+       flagIsCollision = true;
+   end
 end
